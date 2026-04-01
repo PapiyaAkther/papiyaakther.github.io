@@ -10,19 +10,38 @@
 
 <style>
 
-/* 🌈 Moving Gradient Background */
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(-45deg, #e0f2fe, #f0f9ff, #e0e7ff, #fce7f3);
-  background-size: 400% 400%;
-  animation: gradientMove 10s ease infinite;
+  background: #f9fafb;
+  overflow-x: hidden;
 }
 
-@keyframes gradientMove {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
+/* 🔥 Animated blobs */
+.bg-shape {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+  animation: float 10s infinite alternate;
+}
+
+.bg1 { background: #60a5fa; top: -100px; left: -100px; }
+.bg2 { background: #a78bfa; bottom: -100px; right: -100px; animation-delay: 2s; }
+
+@keyframes float {
+  from { transform: translateY(0px); }
+  to { transform: translateY(80px); }
+}
+
+/* NAV */
+.nav {
+  position: fixed;
+  width: 100%;
+  padding: 15px 0;
+  backdrop-filter: blur(10px);
 }
 
 .container {
@@ -31,44 +50,35 @@ body {
   margin: auto;
 }
 
-/* NAV */
-.nav {
-  position: fixed;
-  width: 100%;
-  background: rgba(255,255,255,0.6);
-  backdrop-filter: blur(10px);
-  padding: 15px 0;
-  top: 0;
-  z-index: 1000;
-}
-
 /* HERO */
 .hero {
   text-align: center;
-  padding: 140px 20px 100px;
+  padding: 150px 20px 100px;
 }
 
 .hero h1 {
-  font-size: 48px;
-  background: linear-gradient(90deg, #2563eb, #7c3aed);
-  -webkit-background-clip: text;
-  color: transparent;
+  font-size: 52px;
+  font-weight: 600;
+}
+
+.hero p {
+  color: #555;
 }
 
 /* BUTTON */
 .btn {
   display: inline-block;
-  margin-top: 20px;
-  background: linear-gradient(90deg, #2563eb, #7c3aed);
+  margin-top: 25px;
+  background: #2563eb;
   color: white;
-  padding: 12px 28px;
+  padding: 14px 30px;
   border-radius: 30px;
   text-decoration: none;
   transition: 0.3s;
 }
 
 .btn:hover {
-  transform: scale(1.08);
+  transform: scale(1.1);
 }
 
 /* SECTION */
@@ -79,31 +89,30 @@ body {
 /* GLASS CARD */
 .card {
   background: rgba(255,255,255,0.6);
-  backdrop-filter: blur(12px);
-  padding: 25px;
+  backdrop-filter: blur(15px);
+  padding: 30px;
   border-radius: 20px;
   margin-top: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   transition: 0.4s;
 }
 
-/* 🍎 Apple-style hover */
+/* 🍎 Apple hover */
 .card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  transform: translateY(-15px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
 }
 
 /* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-  gap: 20px;
+  gap: 25px;
 }
 
 /* FORM */
 input, textarea {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   margin-top: 10px;
   border-radius: 10px;
   border: none;
@@ -112,11 +121,11 @@ input, textarea {
 /* WHATSAPP */
 .whatsapp {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 25px;
+  right: 25px;
   background: #25D366;
   color: white;
-  padding: 16px;
+  padding: 18px;
   border-radius: 50%;
   font-size: 22px;
   text-decoration: none;
@@ -127,6 +136,9 @@ input, textarea {
 
 <body>
 
+<div class="bg-shape bg1"></div>
+<div class="bg-shape bg2"></div>
+
 <div class="nav">
   <div class="container">
     <h3>Dr Papiya Akther</h3>
@@ -135,14 +147,14 @@ input, textarea {
 
 <div class="hero" data-aos="fade-up">
   <h1>Dr Papiya Akther</h1>
-  <p>Pediatrician | 7+ Years Experience</p>
+  <p>Pediatrician | 7 Years Experience</p>
   <a href="#appointment" class="btn">Book Appointment</a>
 </div>
 
 <div class="section container" data-aos="fade-up">
   <h2>About</h2>
   <div class="card">
-    <p>Experienced pediatrician with 7 years of dedicated service in child healthcare and patient-centered treatment.</p>
+    <p>Providing compassionate and advanced pediatric care for children with 7 years of professional experience.</p>
   </div>
 </div>
 
@@ -156,7 +168,7 @@ input, textarea {
 </div>
 
 <div class="section container" data-aos="fade-up">
-  <h2>Clinic Location</h2>
+  <h2>Clinic</h2>
   <div class="card">
     <iframe src="https://www.google.com/maps?q=Al+Haramain+Hospital+Sylhet&output=embed"
     width="100%" height="300" style="border-radius:15px;"></iframe>
@@ -167,6 +179,7 @@ input, textarea {
   <h2>Book Appointment</h2>
   <div class="card">
     <form action="https://formsubmit.co/aktherpapiya018@gmail.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="text" name="phone" placeholder="Phone Number" required>
       <textarea name="message" placeholder="Describe your problem"></textarea>
